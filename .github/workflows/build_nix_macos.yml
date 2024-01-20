@@ -1,0 +1,13 @@
+name: "Build legacy Nix package on Darwin x86_64"
+
+on:
+  push:
+
+jobs:
+  darwin:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cachix/install-nix-action@v12
+      - name: Building package
+        run: nix-build . -A defaultPackage.x86_64-darwin
