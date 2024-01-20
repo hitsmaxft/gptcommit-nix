@@ -9,6 +9,9 @@
   let
     pversion = "v0.5.14";
     systemBuildInputs = pkgs: {
+      x86_64-linux = [
+        pkgs.iconv
+      ];
       x86_64-darwin =  [
         pkgs.iconv
         pkgs.darwin.apple_sdk.frameworks.Security
@@ -17,7 +20,7 @@
     };
 
   in
-  utils.lib.eachSystem [ "x86_64-darwin" ] (system:
+  utils.lib.eachSystem [ "x86_64-darwin" "x86_64-linux" ] (system:
   let
     pkgs = import nixpkgs { inherit system; };
     naersk-lib = pkgs.callPackage naersk { };
